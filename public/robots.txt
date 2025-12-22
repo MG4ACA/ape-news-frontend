@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lumicore.com/sitemap.xml
