@@ -1,99 +1,123 @@
 <script setup>
-import Timeline from 'primevue/timeline';
+const timeline = [
+  { label: 'Founded', detail: 'Started as a two-person studio shipping Vue apps.', year: '2020' },
+  {
+    label: 'Mobile expansion',
+    detail: 'Cross-platform delivery with offline-first playbooks.',
+    year: '2021',
+  },
+  {
+    label: 'POS Suite launch',
+    detail: 'Retail and pharmacy POS with compliance baked in.',
+    year: '2022',
+  },
+  {
+    label: 'AI-first era',
+    detail: 'AEO, copilots, and security-first delivery at scale.',
+    year: '2024',
+  },
+];
 
-const events = [
-  { status: 'Founded', date: '2020', icon: 'pi-flag', color: '#0f172a' },
-  { status: 'Expanded to Mobile', date: '2021', icon: 'pi-mobile', color: '#3b82f6' },
-  { status: 'Launched POS Suite', date: '2022', icon: 'pi-shopping-cart', color: '#64748b' },
-  { status: 'AI Integration Era', date: '2024', icon: 'pi-bolt', color: '#0f172a' },
+const values = [
+  {
+    title: 'Outcome over output',
+    copy: 'We measure success by lift, uptime, and user adoption — not ticket counts.',
+  },
+  {
+    title: 'Security everywhere',
+    copy: 'Zero-trust posture, privacy-first data handling, and audits on repeat.',
+  },
+  {
+    title: 'Design with intent',
+    copy: 'Interfaces that feel futuristic, performant, and accessible on every device.',
+  },
+];
+
+const stats = [
+  { label: 'Projects delivered', value: '200+' },
+  { label: 'Avg. conversion lift', value: '35%' },
+  { label: 'Platform coverage', value: 'Web · Mobile · POS' },
 ];
 </script>
 
 <template>
   <div class="about-view">
-    <section class="about-hero bg-primary text-white py-8">
-      <div class="container grid align-items-center">
-        <div class="col-12 md:col-6">
-          <h1 class="text-5xl font-bold mb-4">About Lumicore</h1>
-          <p class="text-xl opacity-90">
-            We are a team of passionate developers, designers, and strategists dedicated to building
-            software that makes a difference.
+    <section class="angled-section">
+      <div class="container hero" style="padding-top: calc(var(--nav-height) + 1.5rem)">
+        <div>
+          <div class="hero-badge">
+            <i class="pi pi-compass"></i>
+            Who we are
+          </div>
+          <h1 class="hero-title">Builders obsessed with reliable, AI-first products.</h1>
+          <p class="hero-subtitle">
+            We’re designers, engineers, and product partners shipping secure, future-forward
+            experiences — from POS to mobile to content ops.
           </p>
-        </div>
-        <div class="col-12 md:col-6 text-center">
-          <i class="pi pi-users" style="font-size: 8rem"></i>
-        </div>
-      </div>
-    </section>
-
-    <section class="mission py-8">
-      <div class="container">
-        <div class="grid">
-          <div class="col-12 md:col-6 p-4">
-            <h2 class="text-3xl font-bold mb-4">Our Mission</h2>
-            <p class="text-lg">
-              To empower businesses through innovative technology and creative digital solutions. We
-              believe in building long-term partnerships with our clients, helping them navigate the
-              ever-changing digital landscape with confidence.
-            </p>
-          </div>
-          <div class="col-12 md:col-6 p-4">
-            <h2 class="text-3xl font-bold mb-4">Our Vision</h2>
-            <p class="text-lg">
-              To be a global leader in AI-first software development, setting the standard for
-              quality, innovation, and client satisfaction in the digital age.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="journey bg-slate-50 py-8">
-      <div class="container">
-        <h2 class="text-3xl font-bold text-center mb-8">Our Journey</h2>
-        <Timeline :value="events" align="alternate" class="customized-timeline">
-          <template #marker="slotProps">
-            <span
-              class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1"
-              :style="{ backgroundColor: slotProps.item.color }"
-            >
-              <i :class="['pi', slotProps.item.icon]"></i>
-            </span>
-          </template>
-          <template #content="slotProps">
-            <div class="p-3 shadow-1 bg-white border-round">
-              <div class="font-bold mb-1">{{ slotProps.item.status }}</div>
-              <div class="text-secondary text-sm">{{ slotProps.item.date }}</div>
+          <div class="card-grid" style="margin-top: 1.5rem">
+            <div v-for="item in stats" :key="item.label" class="surface-card">
+              <div class="stat-number">{{ item.value }}</div>
+              <div class="text-secondary">{{ item.label }}</div>
             </div>
-          </template>
-        </Timeline>
+          </div>
+        </div>
+        <div>
+          <div class="mockup-frame">
+            <span class="mockup-tag">Team</span>
+            <img
+              src="https://placehold.co/1000x540/0b1324/ffffff?text=Team+at+work"
+              alt="Team"
+              style="width: 100%; display: block"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="values">
+      <div class="container">
+        <div class="section-heading text-center">Principles we run on</div>
+        <p class="section-lead text-center">
+          Clear guardrails that keep quality, security, and user delight aligned.
+        </p>
+        <div class="card-grid">
+          <div v-for="item in values" :key="item.title" class="surface-card">
+            <h3 class="m-0 mb-2">{{ item.title }}</h3>
+            <p class="text-secondary">{{ item.copy }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="angled-section">
+      <div class="container">
+        <div class="section-heading text-center">Milestones</div>
+        <p class="section-lead text-center">A quick pulse on how we evolved.</p>
+        <div class="process-steps">
+          <div v-for="item in timeline" :key="item.label" class="process-step">
+            <h4 class="m-0">{{ item.year }} — {{ item.label }}</h4>
+            <p class="text-secondary">{{ item.detail }}</p>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <style scoped>
-.bg-primary {
-  background-color: var(--primary-color);
+.m-0 {
+  margin: 0;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+h4 {
+  margin: 0;
 }
 
 .text-secondary {
   color: var(--text-secondary-color);
-}
-
-@media screen and (max-width: 960px) {
-  ::v-deep(.customized-timeline) {
-    .p-timeline-event:nth-child(even) {
-      flex-direction: row;
-
-      .p-timeline-event-content {
-        text-align: left;
-      }
-    }
-
-    .p-timeline-event-opposite {
-      flex: 0;
-    }
-  }
 }
 </style>
