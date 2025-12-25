@@ -47,10 +47,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
 import { usePrimeVue } from 'primevue/config';
+import { computed, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 defineEmits(['toggle-sidebar']);
 
@@ -124,13 +124,13 @@ const toggleTheme = () => {
   const element = document.querySelector('html');
   const currentTheme = element.classList.contains('dark-mode') ? 'dark' : 'light';
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
+
   if (newTheme === 'dark') {
     element.classList.add('dark-mode');
   } else {
     element.classList.remove('dark-mode');
   }
-  
+
   localStorage.setItem('theme', newTheme);
 };
 </script>

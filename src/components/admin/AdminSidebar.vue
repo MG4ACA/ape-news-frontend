@@ -52,9 +52,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/auth';
+import { useRoute, useRouter } from 'vue-router';
 
 const props = defineProps({
   visible: {
@@ -77,9 +76,7 @@ const menuItems = [
   { path: '/admin/analytics', icon: 'pi pi-chart-line', label: 'Analytics' },
 ];
 
-const superAdminItems = [
-  { path: '/admin/users', icon: 'pi pi-users', label: 'User Management' },
-];
+const superAdminItems = [{ path: '/admin/users', icon: 'pi pi-users', label: 'User Management' }];
 
 const isActive = (path) => {
   if (path === '/admin') {

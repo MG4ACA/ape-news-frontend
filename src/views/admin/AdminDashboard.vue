@@ -99,11 +99,7 @@
             <template #title>Recent Comments</template>
             <template #content>
               <div v-if="recentComments.length > 0" class="activity-list">
-                <div
-                  v-for="comment in recentComments"
-                  :key="comment.id"
-                  class="activity-item"
-                >
+                <div v-for="comment in recentComments" :key="comment.id" class="activity-item">
                   <div class="activity-icon">
                     <i class="pi pi-comment"></i>
                   </div>
@@ -128,13 +124,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useAuthStore } from '@/stores/auth';
-import { newsService } from '@/services/newsService';
-import { commentService } from '@/services/commentService';
-import { analyticsService } from '@/services/analyticsService';
-import { formatDate } from '@/utils/dateFormatter';
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
+import { newsService } from '@/services/newsService';
+import { useAuthStore } from '@/stores/auth';
+import { formatDate } from '@/utils/dateFormatter';
+import { onMounted, ref } from 'vue';
 
 const authStore = useAuthStore();
 const loading = ref(true);
@@ -209,10 +203,12 @@ const fetchDashboardData = async () => {
 };
 
 const getStatusClass = (status) => {
-  return {
-    published: 'status-published',
-    draft: 'status-draft',
-  }[status] || '';
+  return (
+    {
+      published: 'status-published',
+      draft: 'status-draft',
+    }[status] || ''
+  );
 };
 
 const truncate = (text, length) => {

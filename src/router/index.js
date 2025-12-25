@@ -1,7 +1,7 @@
+import { adminGuard, superAdminGuard } from '@/middleware/adminGuard';
 import { useAuthStore } from '@/stores/auth';
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import { adminGuard, superAdminGuard } from '@/middleware/adminGuard';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

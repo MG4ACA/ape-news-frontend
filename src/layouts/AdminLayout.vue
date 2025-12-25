@@ -1,10 +1,10 @@
 <template>
   <div class="admin-layout">
     <AdminSidebar :visible="sidebarVisible" @toggle="sidebarVisible = !sidebarVisible" />
-    
+
     <div class="admin-main" :class="{ 'sidebar-collapsed': !sidebarVisible }">
       <AdminHeader @toggle-sidebar="sidebarVisible = !sidebarVisible" />
-      
+
       <div class="admin-content">
         <router-view />
       </div>
@@ -15,11 +15,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '@/stores/auth';
-import AdminSidebar from '@/components/admin/AdminSidebar.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
+import AdminSidebar from '@/components/admin/AdminSidebar.vue';
+import { useAuthStore } from '@/stores/auth';
+import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
 const router = useRouter();
@@ -62,7 +62,7 @@ onMounted(() => {
   .admin-main {
     margin-left: 0;
   }
-  
+
   .admin-content {
     padding: 1rem;
   }

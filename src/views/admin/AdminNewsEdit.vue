@@ -4,9 +4,7 @@
 
     <Card>
       <template #content>
-        <p class="text-center py-8 text-color-secondary">
-          News editor coming soon...
-        </p>
+        <p class="text-center py-8 text-color-secondary">News editor coming soon...</p>
       </template>
     </Card>
   </div>

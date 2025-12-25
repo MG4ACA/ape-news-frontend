@@ -4,9 +4,7 @@
 
     <Card>
       <template #content>
-        <p class="text-center py-8 text-color-secondary">
-          Comment moderation coming soon...
-        </p>
+        <p class="text-center py-8 text-color-secondary">Comment moderation coming soon...</p>
       </template>
     </Card>
   </div>
