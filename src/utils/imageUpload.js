@@ -63,8 +63,47 @@ export function getImageUrl(imagePath) {
   return `${baseUrl}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
 }
 
+/**
+ * Upload image to server
+ * @param {File} file - Image file to upload
+ * @param {string} type - Upload type (news, ads, etc.)
+ * @returns {Promise<string>} Uploaded image URL
+ */
+export async function uploadImage(file, type = 'news') {
+  // Validate image
+  const validation = validateImageFile(file);
+  if (!validation.valid) {
+    throw new Error(validation.error);
+  }
+
+  // Create FormData for upload
+  const formData = new FormData();
+  formData.append('image', file);
+
+  try {
+    const response = await fetch(`/api/${type}/upload`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      throw new Error('Image upload failed');
+    }
+
+    const data = await response.json();
+    return data.data.url || data.data.path;
+  } catch (error) {
+    console.error('Image upload error:', error);
+    throw error;
+  }
+}
+
 export default {
   validateImageFile,
   createImagePreview,
   getImageUrl,
+  uploadImage,
 };

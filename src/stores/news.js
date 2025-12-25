@@ -37,13 +37,13 @@ export const useNewsStore = defineStore('news', {
         });
 
         if (response.success) {
-          this.newsList = response.data.news || [];
-          if (response.data.pagination) {
+          this.newsList = response.data || [];
+          if (response.pagination) {
             this.pagination = {
-              page: response.data.pagination.page,
-              limit: response.data.pagination.limit,
-              total: response.data.pagination.total,
-              totalPages: response.data.pagination.totalPages,
+              page: response.pagination.page,
+              limit: response.pagination.limit,
+              total: response.pagination.total,
+              totalPages: response.pagination.totalPages,
             };
           }
         }
@@ -120,13 +120,13 @@ export const useNewsStore = defineStore('news', {
         });
 
         if (response.success) {
-          this.newsList = response.data.news || [];
-          if (response.data.pagination) {
+          this.newsList = response.data || [];
+          if (response.pagination) {
             this.pagination = {
-              page: response.data.pagination.page,
-              limit: response.data.pagination.limit,
-              total: response.data.pagination.total,
-              totalPages: response.data.pagination.totalPages,
+              page: response.pagination.page,
+              limit: response.pagination.limit,
+              total: response.pagination.total,
+              totalPages: response.pagination.totalPages,
             };
           }
         }
@@ -153,13 +153,13 @@ export const useNewsStore = defineStore('news', {
         });
 
         if (response.success) {
-          this.newsList = response.data.news || [];
-          if (response.data.pagination) {
+          this.newsList = response.data || [];
+          if (response.pagination) {
             this.pagination = {
-              page: response.data.pagination.page,
-              limit: response.data.pagination.limit,
-              total: response.data.pagination.total,
-              totalPages: response.data.pagination.totalPages,
+              page: response.pagination.page,
+              limit: response.pagination.limit,
+              total: response.pagination.total,
+              totalPages: response.pagination.totalPages,
             };
           }
         }

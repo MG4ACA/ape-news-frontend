@@ -13,13 +13,13 @@
   --muted: #94a3b8;
   --text-color: #0b1324;
   --text-secondary-color: #475569;
-  --glow: 0 10px 45px rgba(124, 58, 237, 0.25);
+  --glow: 0 10px 45px #aac1ec;
   --nav-height: 72px;
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 [data-theme='dark'] {
-  --primary-color: #0b0f1c;
+  --primary-color: #0a2a66;
   --primary-color-alt: #050814;
   --primary-color-text: #e2e8f0;
   --accent-color: #a855f7;
@@ -32,7 +32,7 @@
   --muted: #94a3b8;
   --text-color: #e2e8f0;
   --text-secondary-color: #cbd5e1;
-  --glow: 0 12px 48px rgba(168, 85, 247, 0.3);
+  --glow: 0 12px 48px #0a2a66;
 }
 
 * {
@@ -55,6 +55,7 @@ body {
 .p-menubar-root-list {
   justify-content: center;
   width: 100%;
+  gap: 1.5rem !important;
 }
 
 /*  */
@@ -130,7 +131,7 @@ section {
 }
 
 .app-header {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(20, 184, 166, 0.12));
+  background: linear-gradient(135deg, #0a2a66, #0a2a66);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--surface-border);
 }

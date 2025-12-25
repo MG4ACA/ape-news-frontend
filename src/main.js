@@ -1,23 +1,33 @@
 import Aura from '@primevue/themes/aura';
 import { createPinia } from 'pinia';
+import Badge from 'primevue/badge';
+import BadgeDirective from 'primevue/badgedirective';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
+import Checkbox from 'primevue/checkbox';
+import Column from 'primevue/column';
 import PrimeVue from 'primevue/config';
+import DataTable from 'primevue/datatable';
 import Dialog from 'primevue/dialog';
+import Dropdown from 'primevue/dropdown';
+import FileUpload from 'primevue/fileupload';
 import Image from 'primevue/image';
 import InputSwitch from 'primevue/inputswitch';
 import InputText from 'primevue/inputtext';
 import Menu from 'primevue/menu';
 import Menubar from 'primevue/menubar';
 import Message from 'primevue/message';
+import MultiSelect from 'primevue/multiselect';
 import Paginator from 'primevue/paginator';
 import ProgressSpinner from 'primevue/progressspinner';
+import Tag from 'primevue/tag';
 import Textarea from 'primevue/textarea';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import Tooltip from 'primevue/tooltip';
 import { createApp } from 'vue';
 import App from './App.vue';
+import i18n from './i18n';
 import router from './router';
 
 import 'primeflex/primeflex.css';
@@ -29,6 +39,7 @@ const pinia = createPinia();
 
 app.use(pinia);
 app.use(router);
+app.use(i18n);
 app.use(ToastService);
 app.use(PrimeVue, {
   theme: {
@@ -42,21 +53,30 @@ app.use(PrimeVue, {
 });
 
 // Register global components
+app.component('Badge', Badge);
 app.component('Button', Button);
 app.component('Card', Card);
+app.component('Checkbox', Checkbox);
+app.component('Column', Column);
+app.component('DataTable', DataTable);
 app.component('Dialog', Dialog);
+app.component('Dropdown', Dropdown);
+app.component('FileUpload', FileUpload);
 app.component('Image', Image);
 app.component('InputSwitch', InputSwitch);
 app.component('InputText', InputText);
 app.component('Menu', Menu);
 app.component('Menubar', Menubar);
 app.component('Message', Message);
+app.component('MultiSelect', MultiSelect);
 app.component('Paginator', Paginator);
 app.component('ProgressSpinner', ProgressSpinner);
+app.component('Tag', Tag);
 app.component('Textarea', Textarea);
 app.component('Toast', Toast);
 
 // Register directives
+app.directive('badge', BadgeDirective);
 app.directive('tooltip', Tooltip);
 
 app.mount('#app');

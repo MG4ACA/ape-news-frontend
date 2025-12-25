@@ -17,6 +17,9 @@
 
       <template #end>
         <div class="flex align-items-center gap-3">
+          <!-- Language Switcher -->
+          <LanguageSwitcher />
+
           <!-- Search Icon -->
           <Button
             icon="pi pi-search"
@@ -55,13 +58,16 @@
 </template>
 
 <script setup>
+import LanguageSwitcher from '@/components/common/LanguageSwitcher.vue';
 import { useAuthStore } from '@/stores/auth';
 import { useCategoryStore } from '@/stores/categories';
 import Button from 'primevue/button';
 import Menu from 'primevue/menu';
 import { computed, onMounted, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
+const { t } = useI18n();
 const router = useRouter();
 const authStore = useAuthStore();
 const categoryStore = useCategoryStore();
@@ -88,12 +94,12 @@ watch(theme, applyTheme);
 const navItems = computed(() => {
   const items = [
     {
-      label: 'Home',
+      label: '',
       icon: 'pi pi-home',
       command: () => router.push('/'),
     },
     {
-      label: 'News',
+      label: t('nav.news'),
       icon: 'pi pi-list',
       command: () => router.push('/news'),
     },
@@ -102,7 +108,7 @@ const navItems = computed(() => {
   // Add categories as submenu
   if (categoryStore.rootCategories.length > 0) {
     items.push({
-      label: 'Categories',
+      label: t('nav.categories'),
       icon: 'pi pi-tag',
       items: categoryStore.rootCategories.map((cat) => ({
         label: cat.name,
@@ -112,7 +118,7 @@ const navItems = computed(() => {
   }
 
   items.push({
-    label: 'Videos',
+    label: t('nav.videos'),
     icon: 'pi pi-video',
     command: () => router.push('/videos'),
   });
@@ -120,7 +126,7 @@ const navItems = computed(() => {
   // Add admin link if user is admin
   if (authStore.isAdmin) {
     items.push({
-      label: 'Admin Panel',
+      label: t('nav.admin'),
       icon: 'pi pi-cog',
       command: () => router.push('/admin'),
     });
@@ -131,12 +137,12 @@ const navItems = computed(() => {
 
 const userMenuItems = computed(() => [
   {
-    label: 'Profile',
+    label: t('nav.profile'),
     icon: 'pi pi-user',
     command: () => router.push('/profile'),
   },
   {
-    label: 'Bookmarks',
+    label: t('news.bookmarks'),
     icon: 'pi pi-bookmark',
     command: () => router.push('/bookmarks'),
   },
@@ -144,7 +150,7 @@ const userMenuItems = computed(() => [
     separator: true,
   },
   {
-    label: 'Logout',
+    label: t('nav.logout'),
     icon: 'pi pi-sign-out',
     command: () => {
       authStore.logout();

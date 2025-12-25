@@ -7,6 +7,12 @@ export const newsService = {
     return response.data;
   },
 
+  // Get all news for admin (includes drafts)
+  async getAdminNews(params = {}) {
+    const response = await api.get('/news/admin/all', { params });
+    return response.data;
+  },
+
   // Get single news article by ID
   async getNewsById(id) {
     const response = await api.get(`/news/${id}`);
@@ -42,6 +48,30 @@ export const newsService = {
   // Get related news
   async getRelatedNews(id, limit = 4) {
     const response = await api.get(`/news/${id}/related`, { params: { limit } });
+    return response.data;
+  },
+
+  // Create news (Admin only)
+  async createNews(newsData) {
+    const response = await api.post('/news', newsData);
+    return response.data;
+  },
+
+  // Update news (Admin only)
+  async updateNews(id, newsData) {
+    const response = await api.put(`/news/${id}`, newsData);
+    return response.data;
+  },
+
+  // Delete news (Admin only)
+  async deleteNews(id) {
+    const response = await api.delete(`/news/${id}`);
+    return response.data;
+  },
+
+  // Toggle news status (Admin only)
+  async toggleNewsStatus(id, status) {
+    const response = await api.patch(`/news/${id}/status`, { status });
     return response.data;
   },
 };
