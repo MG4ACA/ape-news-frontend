@@ -19,7 +19,7 @@
               <span class="mx-2">/</span>
               <router-link to="/news" class="text-color-secondary">News</router-link>
               <span class="mx-2">/</span>
-              <span>{{ article.title }}</span>
+              <span>{{ localizedTitle }}</span>
             </nav>
 
             <!-- Article Header -->
@@ -29,7 +29,7 @@
                 <span v-if="article.is_featured" class="badge badge-primary">Featured</span>
               </div>
 
-              <h1 class="text-5xl font-bold mb-3">{{ article.title }}</h1>
+              <h1 class="text-5xl font-bold mb-3">{{ localizedTitle }}</h1>
 
               <div class="article-meta flex flex-wrap gap-4 text-color-secondary mb-4">
                 <span>
@@ -74,16 +74,16 @@
             <div v-if="article.featured_image" class="article-image mb-5">
               <Image
                 :src="getImageUrl(article.featured_image)"
-                :alt="article.title"
+                :alt="localizedTitle"
                 preview
                 class="w-full border-round-lg"
               />
             </div>
 
             <!-- Excerpt -->
-            <div v-if="article.excerpt" class="article-excerpt mb-4">
+            <div v-if="localizedExcerpt" class="article-excerpt mb-4">
               <p class="text-xl line-height-3 text-color-secondary">
-                {{ article.excerpt }}
+                {{ localizedExcerpt }}
               </p>
             </div>
 
@@ -102,7 +102,7 @@
             </div>
 
             <!-- Article Content -->
-            <div class="article-body mb-5" v-html="article.content"></div>
+            <div class="article-body mb-5" v-html="localizedContent"></div>
 
             <!-- Tags/Categories -->
             <div class="article-tags mb-5">
@@ -140,12 +140,12 @@
                     <img
                       v-if="related.featured_image"
                       :src="getImageUrl(related.featured_image)"
-                      :alt="related.title"
+                      :alt="getLocalizedField(related, 'title', locale)"
                       class="related-thumb"
                     />
                     <div class="flex-1">
                       <h4 class="text-lg font-semibold mb-2 line-height-3">
-                        {{ related.title }}
+                        {{ getLocalizedField(related, 'title', locale) }}
                       </h4>
                       <span class="text-sm text-color-secondary">
                         {{ formatDate(related.published_at, 'short') }}
@@ -171,10 +171,12 @@ import { useAuthStore } from '@/stores/auth';
 import { useNewsStore } from '@/stores/news';
 import { useUserStore } from '@/stores/user';
 import { formatDate } from '@/utils/dateFormatter';
+import { getLocalizedField } from '@/utils/i18nHelpers';
 import { getImageUrl } from '@/utils/imageUpload';
 import { calculateReadingTime } from '@/utils/readingTime';
 import { useToast } from 'primevue/usetoast';
 import { computed, onMounted, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
@@ -183,17 +185,29 @@ const newsStore = useNewsStore();
 const authStore = useAuthStore();
 const userStore = useUserStore();
 const toast = useToast();
+const { locale } = useI18n();
 
 const article = computed(() => newsStore.currentArticle);
+
+const localizedTitle = computed(() =>
+  article.value ? getLocalizedField(article.value, 'title', locale.value) : ''
+);
+const localizedExcerpt = computed(() =>
+  article.value ? getLocalizedField(article.value, 'excerpt', locale.value) : ''
+);
+const localizedContent = computed(() =>
+  article.value ? getLocalizedField(article.value, 'content', locale.value) : ''
+);
+
 const readingTime = computed(() =>
-  article.value ? calculateReadingTime(article.value.content) : 0
+  localizedContent.value ? calculateReadingTime(localizedContent.value) : 0
 );
 
 const fetchArticle = async () => {
   const articleId = route.params.id;
   try {
     await newsStore.fetchNewsById(articleId);
-    await newsStore.fetchRelatedNews(articleId);
+    await newsStore.fetchRelatedNews(articleId, 4, locale.value);
 
     // Track view
     analyticsService
@@ -284,6 +298,13 @@ watch(
     }
   }
 );
+
+// Refetch related articles when language changes
+watch(locale, () => {
+  if (article.value?.id) {
+    newsStore.fetchRelatedNews(article.value.id, 4, locale.value);
+  }
+});
 </script>
 
 <style scoped>

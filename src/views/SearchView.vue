@@ -81,12 +81,14 @@ import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import Pagination from '@/components/common/Pagination.vue';
 import NewsCard from '@/components/news/NewsCard.vue';
 import { useNewsStore } from '@/stores/news';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
 const router = useRouter();
 const newsStore = useNewsStore();
+const { locale } = useI18n();
 
 const searchQuery = ref(route.query.q || '');
 const hasSearched = ref(false);
@@ -101,7 +103,7 @@ const handleSearch = async () => {
   router.push({ query: { q: searchQuery.value } });
 
   try {
-    await newsStore.searchNews(searchQuery.value);
+    await newsStore.searchNews(searchQuery.value, { language: locale.value });
   } catch (error) {
     console.error('Search failed:', error);
   }
@@ -109,12 +111,20 @@ const handleSearch = async () => {
 
 const handlePageChange = (page) => {
   newsStore.setPage(page);
-  newsStore.searchNews(searchQuery.value);
+  newsStore.searchNews(searchQuery.value, { language: locale.value });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 onMounted(() => {
   if (searchQuery.value) {
+    handleSearch();
+  }
+});
+
+// Refetch when language changes
+watch(locale, () => {
+  if (hasSearched.value && searchQuery.value) {
+    newsStore.setPage(1);
     handleSearch();
   }
 });

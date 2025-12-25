@@ -89,11 +89,13 @@ import NewsCard from '@/components/news/NewsCard.vue';
 import { useCategoryStore } from '@/stores/categories';
 import { useNewsStore } from '@/stores/news';
 import { computed, onMounted, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const newsStore = useNewsStore();
 const categoryStore = useCategoryStore();
+const { locale } = useI18n();
 
 const category = computed(() => categoryStore.currentCategory);
 const categoryPath = computed(() =>
@@ -107,7 +109,7 @@ const fetchData = async () => {
   const categoryId = route.params.id;
   try {
     await categoryStore.fetchCategoryById(categoryId);
-    await newsStore.fetchNewsByCategory(categoryId);
+    await newsStore.fetchNewsByCategory(categoryId, { language: locale.value });
   } catch (error) {
     console.error('Failed to fetch data:', error);
   }
@@ -115,7 +117,7 @@ const fetchData = async () => {
 
 const handlePageChange = (page) => {
   newsStore.setPage(page);
-  newsStore.fetchNewsByCategory(route.params.id);
+  newsStore.fetchNewsByCategory(route.params.id, { language: locale.value });
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
@@ -140,6 +142,12 @@ watch(
     }
   }
 );
+
+// Refetch when language changes
+watch(locale, () => {
+  newsStore.setPage(1);
+  fetchData();
+});
 </script>
 
 <style scoped>

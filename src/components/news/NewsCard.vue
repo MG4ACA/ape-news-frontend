@@ -5,7 +5,7 @@
         <img
           v-if="article.featured_image"
           :src="getImageUrl(article.featured_image)"
-          :alt="article.title"
+          :alt="localizedTitle"
           class="w-full"
         />
         <div v-else class="placeholder-image flex align-items-center justify-content-center">
@@ -21,7 +21,7 @@
     </template>
 
     <template #title>
-      <h3 class="news-card-title line-clamp-2">{{ article.title }}</h3>
+      <h3 class="news-card-title line-clamp-2">{{ localizedTitle }}</h3>
     </template>
 
     <template #subtitle>
@@ -40,7 +40,7 @@
 
     <template #content>
       <p class="news-card-excerpt line-clamp-3 text-color-secondary mb-3">
-        {{ article.excerpt }}
+        {{ localizedExcerpt }}
       </p>
 
       <div class="news-card-footer flex justify-content-between align-items-center">
@@ -76,10 +76,12 @@
 import { useAuthStore } from '@/stores/auth';
 import { useUserStore } from '@/stores/user';
 import { formatDate } from '@/utils/dateFormatter';
+import { getLocalizedField } from '@/utils/i18nHelpers';
 import { getImageUrl } from '@/utils/imageUpload';
 import { calculateReadingTime } from '@/utils/readingTime';
 import { useToast } from 'primevue/usetoast';
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
 const props = defineProps({
@@ -97,8 +99,13 @@ const router = useRouter();
 const authStore = useAuthStore();
 const userStore = useUserStore();
 const toast = useToast();
+const { locale } = useI18n();
 
-const readingTime = computed(() => calculateReadingTime(props.article.content || ''));
+const localizedTitle = computed(() => getLocalizedField(props.article, 'title', locale.value));
+const localizedExcerpt = computed(() => getLocalizedField(props.article, 'excerpt', locale.value));
+const localizedContent = computed(() => getLocalizedField(props.article, 'content', locale.value));
+
+const readingTime = computed(() => calculateReadingTime(localizedContent.value || ''));
 const isBookmarked = computed(() => userStore.isBookmarked(props.article.id));
 
 const navigateToArticle = () => {

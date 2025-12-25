@@ -20,14 +20,18 @@ export const newsService = {
   },
 
   // Get featured news
-  async getFeaturedNews(limit = 5) {
-    const response = await api.get('/news/featured', { params: { limit } });
+  async getFeaturedNews(limit = 5, language = null) {
+    const params = { limit, is_featured: true };
+    if (language) params.language = language;
+    const response = await api.get('/news', { params });
     return response.data;
   },
 
   // Get breaking news
-  async getBreakingNews(limit = 3) {
-    const response = await api.get('/news/breaking', { params: { limit } });
+  async getBreakingNews(limit = 3, language = null) {
+    const params = { limit, is_breaking: true };
+    if (language) params.language = language;
+    const response = await api.get('/news', { params });
     return response.data;
   },
 
@@ -39,15 +43,17 @@ export const newsService = {
 
   // Search news
   async searchNews(query, params = {}) {
-    const response = await api.get('/news/search', {
-      params: { q: query, ...params },
+    const response = await api.get('/news', {
+      params: { search: query, ...params },
     });
     return response.data;
   },
 
   // Get related news
-  async getRelatedNews(id, limit = 4) {
-    const response = await api.get(`/news/${id}/related`, { params: { limit } });
+  async getRelatedNews(id, limit = 4, language = null) {
+    const params = { limit };
+    if (language) params.language = language;
+    const response = await api.get(`/news/${id}/related`, { params });
     return response.data;
   },
 

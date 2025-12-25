@@ -30,6 +30,7 @@ export const useNewsStore = defineStore('news', {
       this.error = null;
 
       try {
+        // Add language parameter if locale is provided
         const response = await newsService.getNews({
           page: this.pagination.page,
           limit: this.pagination.limit,
@@ -58,9 +59,9 @@ export const useNewsStore = defineStore('news', {
       }
     },
 
-    async fetchFeaturedNews(limit = 5) {
+    async fetchFeaturedNews(limit = 5, language = null) {
       try {
-        const response = await newsService.getFeaturedNews(limit);
+        const response = await newsService.getFeaturedNews(limit, language);
 
         if (response.success) {
           this.featuredNews = response.data || [];
@@ -73,9 +74,9 @@ export const useNewsStore = defineStore('news', {
       }
     },
 
-    async fetchBreakingNews(limit = 3) {
+    async fetchBreakingNews(limit = 3, language = null) {
       try {
-        const response = await newsService.getBreakingNews(limit);
+        const response = await newsService.getBreakingNews(limit, language);
 
         if (response.success) {
           this.breakingNews = response.data || [];
@@ -174,9 +175,9 @@ export const useNewsStore = defineStore('news', {
       }
     },
 
-    async fetchRelatedNews(id, limit = 4) {
+    async fetchRelatedNews(id, limit = 4, language = null) {
       try {
-        const response = await newsService.getRelatedNews(id, limit);
+        const response = await newsService.getRelatedNews(id, limit, language);
 
         if (response.success) {
           this.relatedArticles = response.data || [];

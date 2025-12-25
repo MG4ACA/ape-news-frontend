@@ -64,13 +64,18 @@ import Pagination from '@/components/common/Pagination.vue';
 import NewsCard from '@/components/news/NewsCard.vue';
 import { useNewsStore } from '@/stores/news';
 import { onMounted, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const newsStore = useNewsStore();
 const sortBy = ref('latest');
+const { locale } = useI18n();
 
 const fetchNews = async () => {
   try {
-    await newsStore.fetchNews({ sort: sortBy.value });
+    await newsStore.fetchNews({
+      sort: sortBy.value,
+      language: locale.value,
+    });
   } catch (error) {
     console.error('Failed to fetch news:', error);
   }
@@ -83,6 +88,12 @@ const handlePageChange = (page) => {
 };
 
 watch(sortBy, () => {
+  newsStore.setPage(1);
+  fetchNews();
+});
+
+// Refetch when language changes
+watch(locale, () => {
   newsStore.setPage(1);
   fetchNews();
 });

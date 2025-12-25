@@ -16,7 +16,7 @@
                 :to="`/news/${newsStore.breakingNews[0].id}`"
                 class="text-white no-underline hover:underline"
               >
-                {{ newsStore.breakingNews[0].title }}
+                {{ getLocalizedField(newsStore.breakingNews[0], 'title', locale) }}
               </router-link>
             </div>
           </div>
@@ -39,17 +39,19 @@
                     <img
                       v-if="newsStore.featuredNews[0].featured_image"
                       :src="getImageUrl(newsStore.featuredNews[0].featured_image)"
-                      :alt="newsStore.featuredNews[0].title"
+                      :alt="getLocalizedField(newsStore.featuredNews[0], 'title', locale)"
                       class="w-full"
                     />
                   </div>
                 </template>
                 <template #title>
-                  <h3 class="text-3xl">{{ newsStore.featuredNews[0].title }}</h3>
+                  <h3 class="text-3xl">
+                    {{ getLocalizedField(newsStore.featuredNews[0], 'title', locale) }}
+                  </h3>
                 </template>
                 <template #content>
                   <p class="text-xl text-color-secondary line-height-3">
-                    {{ newsStore.featuredNews[0].excerpt }}
+                    {{ getLocalizedField(newsStore.featuredNews[0], 'excerpt', locale) }}
                   </p>
                   <div class="flex gap-3 text-color-secondary mt-3">
                     <span>
@@ -79,12 +81,12 @@
                       <img
                         v-if="article.featured_image"
                         :src="getImageUrl(article.featured_image)"
-                        :alt="article.title"
+                        :alt="getLocalizedField(article, 'title', locale)"
                         class="side-thumb"
                       />
                       <div class="flex-1">
                         <h4 class="text-lg font-semibold mb-2 line-height-3">
-                          {{ article.title }}
+                          {{ getLocalizedField(article, 'title', locale) }}
                         </h4>
                         <span class="text-sm text-color-secondary">
                           {{ formatDate(article.published_at, 'relative') }}
@@ -167,21 +169,24 @@ import NewsCard from '@/components/news/NewsCard.vue';
 import { useCategoryStore } from '@/stores/categories';
 import { useNewsStore } from '@/stores/news';
 import { formatDate } from '@/utils/dateFormatter';
+import { getLocalizedField } from '@/utils/i18nHelpers';
 import { getImageUrl } from '@/utils/imageUpload';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const newsStore = useNewsStore();
 const categoryStore = useCategoryStore();
 const loading = ref(true);
+const { locale } = useI18n();
 
 const fetchHomeData = async () => {
   loading.value = true;
 
   try {
     await Promise.all([
-      newsStore.fetchBreakingNews(3),
-      newsStore.fetchFeaturedNews(5),
-      newsStore.fetchNews({ limit: 6 }),
+      newsStore.fetchBreakingNews(3, locale.value),
+      newsStore.fetchFeaturedNews(5, locale.value),
+      newsStore.fetchNews({ limit: 6, language: locale.value }),
       categoryStore.fetchCategories(),
     ]);
   } catch (error) {
@@ -192,6 +197,11 @@ const fetchHomeData = async () => {
 };
 
 onMounted(() => {
+  fetchHomeData();
+});
+
+// Refetch news when language changes
+watch(locale, () => {
   fetchHomeData();
 });
 </script>

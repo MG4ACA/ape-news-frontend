@@ -296,22 +296,32 @@
 
         <!-- Actions -->
         <div class="col-12">
-          <div class="flex gap-3 justify-content-end">
+          <div class="flex gap-3 justify-content-between">
             <Button
-              label="Cancel"
-              icon="pi pi-times"
-              severity="secondary"
+              label="Generate Sample Data"
+              icon="pi pi-bolt"
+              severity="help"
               outlined
-              @click="$emit('cancel')"
+              @click="generateSampleData"
+              type="button"
             />
-            <Button
-              label="Save as Draft"
-              icon="pi pi-save"
-              outlined
-              @click="saveDraft"
-              :loading="saving"
-            />
-            <Button label="Publish" icon="pi pi-check" type="submit" :loading="saving" />
+            <div class="flex gap-3">
+              <Button
+                label="Cancel"
+                icon="pi pi-times"
+                severity="secondary"
+                outlined
+                @click="$emit('cancel')"
+              />
+              <Button
+                label="Save as Draft"
+                icon="pi pi-save"
+                outlined
+                @click="saveDraft"
+                :loading="saving"
+              />
+              <Button label="Publish" icon="pi pi-check" type="submit" :loading="saving" />
+            </div>
           </div>
         </div>
       </div>
@@ -443,6 +453,75 @@ const removeImage = () => {
   formData.value.featured_image = null;
 };
 
+const generateSampleData = () => {
+  // Enable all languages
+  languageFlags.value.hasEnglish = true;
+  languageFlags.value.hasTamil = true;
+
+  // Sinhala content
+  formData.value.title_si = 'ශ්‍රී ලංකාවේ තාක්ෂණික ප්‍රගතිය වේගවත් වෙයි';
+  formData.value.excerpt_si =
+    'ශ්‍රී ලංකාව දිනෙන් දින තාක්ෂණික ප්‍රගතියේ නව මට්ටම් කරා ළඟා වෙමින් සිටී. නව්‍ය තාක්ෂණයන් භාවිතා කරමින් රටේ ආර්ථිකය නගා සිටුවීමේ ප්‍රයත්නයන් සාර්ථක වෙමින් පවතී.';
+  formData.value.content_si = `<h2>තාක්ෂණික විප්ලවය</h2>
+
+<p>ශ්‍රී ලංකාව දිනෙන් දින තාක්ෂණික ප්‍රගතියේ නව මට්ටම් කරා ළඟා වෙමින් සිටී. නව්‍ය තාක්ෂණයන් භාවිතා කරමින් රටේ ආර්ථිකය නගා සිටුවීමේ ප්‍රයත්නයන් සාර්ථක වෙමින් පවතී.</p>
+
+<h3>ප්‍රධාන වර්ධනයන්</h3>
+
+<ul>
+  <li>කෘතිම බුද්ධිය (AI) සහ යන්ත්‍ර ඉගෙනුම්</li>
+  <li>ඩිජිටල් බැංකු පද්ධති</li>
+  <li>ඊ-කොමර්ස් වේදිකා</li>
+  <li>දුරස්ථ වැඩ සහ ඩිජිටල් නාමවිචල්‍යය</li>
+</ul>
+
+<p>මෙම වර්ධනයන් මගින් ශ්‍රී ලංකාවේ තරුණ තාක්ෂණ ප්‍රජාව ශක්තිමත් වෙමින් පවතී. බොහෝ තරුණයින් තාක්ෂණික ව්‍යවසායකත්වයට පිවිසෙමින් සාර්ථක ව්‍යාපාර ආරම්භ කරති.</p>`;
+
+  // English content
+  formData.value.title_en = "Sri Lanka's Technological Progress Accelerates";
+  formData.value.excerpt_en =
+    "Sri Lanka is reaching new levels of technological progress day by day. Efforts to boost the country's economy using modern technologies are proving successful.";
+  formData.value.content_en = `<h2>Technological Revolution</h2>
+
+<p>Sri Lanka is reaching new levels of technological progress day by day. Efforts to boost the country's economy using modern technologies are proving successful.</p>
+
+<h3>Major Developments</h3>
+
+<ul>
+  <li>Artificial Intelligence (AI) and Machine Learning</li>
+  <li>Digital Banking Systems</li>
+  <li>E-commerce Platforms</li>
+  <li>Remote Work and Digital Nomadism</li>
+</ul>
+
+<p>These developments are strengthening Sri Lanka's young tech community. Many young people are entering tech entrepreneurship and starting successful businesses.</p>`;
+
+  // Tamil content
+  formData.value.title_ta = 'இலங்கையின் தொழில்நுட்ப முன்னேற்றம் துரிதப்படுத்துகிறது';
+  formData.value.excerpt_ta =
+    'இலங்கை நாளுக்கு நாள் தொழில்நுட்ப முன்னேற்றத்தின் புதிய மட்டங்களை எட்டிக் கொண்டிருக்கிறது. நவீன தொழில்நுட்பங்களைப் பயன்படுத்தி நாட்டின் பொருளாதாரத்தை மேம்படுத்துவதற்கான முயற்சிகள் வெற்றிகரமாக உள்ளன.';
+  formData.value.content_ta = `<h2>தொழில்நுட்ப புரட்சி</h2>
+
+<p>இலங்கை நாளுக்கு நாள் தொழில்நுட்ப முன்னேற்றத்தின் புதிய மட்டங்களை எட்டிக் கொண்டிருக்கிறது. நவீன தொழில்நுட்பங்களைப் பயன்படுத்தி நாட்டின் பொருளாதாரத்தை மேம்படுத்துவதற்கான முயற்சிகள் வெற்றிகரமாக உள்ளன.</p>
+
+<h3>முக்கிய மேம்பாடுகள்</h3>
+
+<ul>
+  <li>செயற்கை நுண்ணறிவு (AI) மற்றும் இயந்திர கற்றல்</li>
+  <li>டிஜிட்டல் வங்கி முறைகள்</li>
+  <li>மின்-வணிக தளங்கள்</li>
+  <li>தொலைதூர வேலை மற்றும் டிஜிட்டல் நாடோடிகள்</li>
+</ul>
+
+<p>இந்த மேம்பாடுகள் இலங்கையின் இளம் தொழில்நுட்ப சமூகத்தை வலுப்படுத்துகின்றன. பல இளைஞர்கள் தொழில்நுட்ப தொழில்முனைவில் நுழைந்து வெற்றிகரமான வணிகங்களைத் தொடங்குகிறார்கள்.</p>`;
+
+  // Other fields
+  formData.value.youtube_url = '';
+  formData.value.status = 'draft';
+  formData.value.is_featured = true;
+  formData.value.is_breaking = false;
+};
+
 const validateForm = () => {
   errors.value = {};
 
@@ -487,13 +566,19 @@ const submitForm = async () => {
   submitData.excerpt = submitData.excerpt_si;
   submitData.content = submitData.content_si;
 
-  // Remove empty optional language fields to avoid sending null values
-  if (!languageFlags.value.hasEnglish) {
+  // Only remove optional language fields if checkbox is unchecked AND fields are empty
+  if (
+    !languageFlags.value.hasEnglish ||
+    (!submitData.title_en && !submitData.excerpt_en && !submitData.content_en)
+  ) {
     delete submitData.title_en;
     delete submitData.excerpt_en;
     delete submitData.content_en;
   }
-  if (!languageFlags.value.hasTamil) {
+  if (
+    !languageFlags.value.hasTamil ||
+    (!submitData.title_ta && !submitData.excerpt_ta && !submitData.content_ta)
+  ) {
     delete submitData.title_ta;
     delete submitData.excerpt_ta;
     delete submitData.content_ta;

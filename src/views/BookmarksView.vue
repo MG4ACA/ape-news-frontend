@@ -40,11 +40,18 @@ import ErrorMessage from '@/components/common/ErrorMessage.vue';
 import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import NewsCard from '@/components/news/NewsCard.vue';
 import { useUserStore } from '@/stores/user';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 const userStore = useUserStore();
+const { locale } = useI18n();
 
 onMounted(() => {
+  userStore.fetchBookmarks();
+});
+
+// Refetch when language changes
+watch(locale, () => {
   userStore.fetchBookmarks();
 });
 </script>
