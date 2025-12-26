@@ -113,7 +113,7 @@
                   :to="`/category/${category.id}`"
                   class="badge badge-info"
                 >
-                  {{ category.name }}
+                  {{ getLocalizedField(category, 'name', locale) }}
                 </router-link>
               </div>
             </div>

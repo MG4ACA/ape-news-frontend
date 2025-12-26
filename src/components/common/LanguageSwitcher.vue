@@ -10,7 +10,7 @@
     <template #value="slotProps">
       <div class="flex align-items-center gap-2">
         <i class="pi pi-globe"></i>
-        <span>{{ getLanguageName(slotProps.value) }}</span>
+        <span class="font-semibold">{{ slotProps.value?.toUpperCase() || 'SI' }}</span>
       </div>
     </template>
     <template #option="slotProps">
@@ -58,6 +58,5 @@ const changeLanguage = (event) => {
 
 <style scoped>
 .language-switcher {
-  min-width: 150px;
 }
 </style>

@@ -1,13 +1,12 @@
 <template>
-  <header class="sticky top-0 z-5 app-header" style="height: var(--nav-height)">
+  <header class="sticky top-0 z-5 app-header m-2" style="height: var(--nav-height)">
+    <div
+      class="logo-container flex align-items-center gap-2 cursor-pointer"
+      @click="$router.push('/')"
+    >
+      <img src="/logo.png" alt="APE News Logo" class="logo-header" />
+    </div>
     <Menubar :model="navItems" class="border-round-xl px-3 py-2 menubar-custom">
-      <template #start>
-        <div class="flex align-items-center gap-2 cursor-pointer" @click="$router.push('/')">
-          <img src="/logo.png" alt="APE News Logo" class="logo-header" style="height: 40px" />
-          <span class="text-xl font-bold hidden md:inline">APE News</span>
-        </div>
-      </template>
-
       <template #item="{ item }">
         <a @click="item.command" class="p-menuitem-link">
           <span :class="item.icon" />
@@ -61,13 +60,14 @@
 import LanguageSwitcher from '@/components/common/LanguageSwitcher.vue';
 import { useAuthStore } from '@/stores/auth';
 import { useCategoryStore } from '@/stores/categories';
+import { getLocalizedField } from '@/utils/i18nHelpers';
 import Button from 'primevue/button';
 import Menu from 'primevue/menu';
 import { computed, onMounted, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const router = useRouter();
 const authStore = useAuthStore();
 const categoryStore = useCategoryStore();
@@ -100,33 +100,44 @@ const navItems = computed(() => {
     },
     {
       label: t('nav.news'),
-      icon: 'pi pi-list',
       command: () => router.push('/news'),
     },
   ];
 
-  // Add categories as submenu
+  // Add first 6 categories as individual menu items
   if (categoryStore.rootCategories.length > 0) {
-    items.push({
-      label: t('nav.categories'),
-      icon: 'pi pi-tag',
-      items: categoryStore.rootCategories.map((cat) => ({
-        label: cat.name,
+    const visibleCategories = categoryStore.rootCategories.slice(0, 6);
+    const remainingCategories = categoryStore.rootCategories.slice(6);
+
+    // Add visible categories as individual items
+    visibleCategories.forEach((cat) => {
+      items.push({
+        label: getLocalizedField(cat, 'name', locale.value),
         command: () => router.push(`/category/${cat.id}`),
-      })),
+      });
     });
+
+    // Add "More" dropdown for remaining categories
+    if (remainingCategories.length > 0) {
+      items.push({
+        label: t('nav.more'),
+        items: remainingCategories.map((cat) => ({
+          label: getLocalizedField(cat, 'name', locale.value),
+          command: () => router.push(`/category/${cat.id}`),
+        })),
+      });
+    }
   }
 
   items.push({
     label: t('nav.videos'),
-    icon: 'pi pi-video',
     command: () => router.push('/videos'),
   });
 
   // Add admin link if user is admin
   if (authStore.isAdmin) {
     items.push({
-      label: t('nav.admin'),
+      // label: t('nav.admin'),
       icon: 'pi pi-cog',
       command: () => router.push('/admin'),
     });
@@ -164,9 +175,18 @@ const toggleUserMenu = (event) => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .logo-header {
   width: auto;
   object-fit: contain;
+}
+
+:deep(.menubar-custom .p-menuitem-text) {
+  font-size: 0.875rem;
+}
+
+.logo-container {
+  position: absolute;
+  z-index: 2;
 }
 </style>

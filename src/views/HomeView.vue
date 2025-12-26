@@ -149,9 +149,14 @@
               >
                 <template #content>
                   <i class="pi pi-folder text-5xl text-primary mb-3"></i>
-                  <h3 class="text-xl font-semibold mb-2">{{ category.name }}</h3>
-                  <p v-if="category.description" class="text-color-secondary m-0">
-                    {{ category.description }}
+                  <h3 class="text-xl font-semibold mb-2">
+                    {{ getLocalizedField(category, 'name', locale) }}
+                  </h3>
+                  <p
+                    v-if="getLocalizedField(category, 'description', locale)"
+                    class="text-color-secondary m-0"
+                  >
+                    {{ getLocalizedField(category, 'description', locale) }}
                   </p>
                 </template>
               </Card>

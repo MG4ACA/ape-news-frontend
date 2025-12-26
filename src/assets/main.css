@@ -131,7 +131,7 @@ section {
 }
 
 .app-header {
-  background: linear-gradient(135deg, #0a2a66, #0a2a66);
+  /* background: linear-gradient(135deg, #0a2a66, #0a2a66); */
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--surface-border);
 }
@@ -183,7 +183,7 @@ section {
 }
 
 .logo-header {
-  height: 42px;
+  height: 13vh;
   width: auto;
   object-fit: contain;
 }

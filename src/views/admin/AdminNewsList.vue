@@ -322,57 +322,65 @@ const loadSampleData = async () => {
 
   const sampleArticles = [
     {
-      title: 'Breaking: Major Technology Breakthrough Announced',
-      excerpt:
+      title_si: 'තාක්ෂණික ප්‍රගතියේ විශාල ජයග්‍රහණයක්',
+      title_en: 'Breaking: Major Technology Breakthrough Announced',
+      title_ta: 'முக்கிய தொழில்நுட்ப முன்னேற்றம் அறிவிக்கப்பட்டது',
+      excerpt_si:
+        'ක්වොන්ටම් පරිගණක ක්ෂේත්‍රයේ විශාල ජයග්‍රහණයක් ලබා ගැනීමට විද්‍යාඥයින්ට සමත් විය.',
+      excerpt_en:
         'Scientists achieve quantum computing milestone that could revolutionize computing industry.',
-      content:
+      excerpt_ta:
+        'கணினித் துறையை புரட்சிகரமாக மாற்றக்கூடிய குவாண்டம் கம்ப்யூட்டிங் மைல்கல்லை விஞ்ஞானிகள் அடைந்துள்ளனர்.',
+      content_si:
+        'ලෝක ක්වොන්ටම් පර්යේෂණ ආයතනයේ පර්යේෂකයන් අද ක්වොන්ටම් පරිගණක තාක්ෂණයේ විශාල ජයග්‍රහණයක් ප්‍රකාශයට පත් කළහ. නව ක්වොන්ටම් ප්‍රොසෙසරය පෙර නොවූ විරූ ස්ථායීතාවයක් සහ ගණනය කිරීමේ බලයක් පෙන්නුම් කරයි.\n\nඩොක්ටර් සාරා චෙන්ගේ නායකත්වයෙන් පර්යේෂණ කණ්ඩායම විසින් නව දෝෂ නිවැරදි කිරීමේ ඇල්ගොරිතමයක් සංවර්ධනය කර ඇත. මෙම තාක්ෂණය ආර්ථික ආකෘති නිර්මාණයේ සිට ඖෂධ සොයාගැනීම දක්වා විශාල බලපෑමක් ඇති කළ හැකිය.',
+      content_en:
         'In a groundbreaking announcement today, researchers at the Global Quantum Research Institute unveiled a major breakthrough in quantum computing technology. The new quantum processor demonstrates unprecedented stability and computational power, potentially marking a turning point in the race towards practical quantum computers.\n\nThe breakthrough addresses one of the most persistent challenges in quantum computing: maintaining quantum coherence for extended periods. The research team, led by Dr. Sarah Chen, developed a novel error-correction algorithm that allows quantum bits to maintain their state for up to 10 seconds—a significant improvement over previous records.\n\n"This achievement represents years of collaborative effort," Dr. Chen stated during the press conference. "We believe this technology will accelerate the development of quantum computers capable of solving problems currently impossible for classical computers."\n\nIndustry experts suggest this development could have far-reaching implications for fields ranging from drug discovery to climate modeling.',
+      content_ta:
+        'உலகளாவிய குவாண்டம் ஆராய்ச்சி நிறுவனத்தின் ஆராய்ச்சியாளர்கள் இன்று குவாண்டம் கம்ப்யூட்டிங் தொழில்நுட்பத்தில் ஒரு பெரிய முன்னேற்றத்தை வெளியிட்டனர். புதிய குவாண்டம் செயலி முன்னோடியில்லாத நிலைத்தன்மையையும் கணக்கீட்டு சக்தியையும் வெளிப்படுத்துகிறது.\n\nடாக்டர் சாரா சென் தலைமையிலான ஆராய்ச்சிக் குழு ஒரு புதிய பிழை-திருத்த அல்காரிதத்தை உருவாக்கியுள்ளது. இந்த தொழில்நுட்பம் மருந்து கண்டுபிடிப்பு முதல் காலநிலை மாடலிங் வரை பல துறைகளில் தூரநோக்கு தாக்கங்களை ஏற்படுத்தலாம்.',
       status: 'published',
       is_breaking: true,
       is_featured: false,
-      categories: categoryOptions.value.length > 1 ? [categoryOptions.value[1].id] : [],
+      category_ids: categoryOptions.value.length > 1 ? [categoryOptions.value[2].id] : [],
     },
     {
-      title: 'Local Community Celebrates Annual Cultural Festival',
-      excerpt: 'Thousands gather for the citys most anticipated cultural event of the year.',
-      content:
+      title_si: 'ප්‍රජා සංස්කෘතික උත්සවය සාර්ථකව පැවැත්විණි',
+      title_en: 'Local Community Celebrates Annual Cultural Festival',
+      title_ta: 'உள்ளூர் சமூகம் வருடாந்த கலாச்சார விழாவை கொண்டாடுகிறது',
+      excerpt_si: 'වසරේ වඩාත්ම අපේක්ෂිත සංස්කෘතික උත්සවය සඳහා දහස් ගණනක් එක්විය.',
+      excerpt_en: 'Thousands gather for the citys most anticipated cultural event of the year.',
+      excerpt_ta:
+        'ஆண்டின் மிகவும் எதிர்பார்க்கப்பட்ட கலாச்சார நிகழ்வுக்கு ஆயிரக்கணக்கானோர் கூடினர்.',
+      content_si:
+        'වාර්ෂික සංස්කෘතික උරුමය උත්සවය මේ සති අන්තයේ වාර්තාගත සෙනඟක් ආකර්ෂණය කර ගත්තේය. තෙදින උත්සවය ලොව පුරා සිට සම්ප්‍රදායන් ප්‍රදර්ශනය කරන කණ්ඩායම් 100කට වඩා විශේෂාංග ඇතුළත් විය.\n\nසංවිධායකයින් උත්සවය පුරා අමුත්තන් 50,000කට වඩා වාර්තා කළ අතර එය පසුගිය වසරට වඩා 30% වැඩි වීමකි. නගරාධිපති ජෙනිෆර් රොබට්ස් පැවසුවේ "මෙම උත්සවය අපගේ ප්‍රජාවේ ආත්මය මූර්තිමත් කරයි" යනුවෙනි.\n\nඉදිරි වසරේ පුළුල් කරන ලද උත්සවයක් සඳහා සැලසුම් ප්‍රකාශයට පත් කිරීමට උත්සවයේ සාර්ථකත්වය සංවිධායකයින්ට පොළඹවා ඇත.',
+      content_en:
         'The annual Cultural Heritage Festival drew record crowds this weekend as residents and visitors came together to celebrate the citys rich diversity. The three-day event featured performances, food stalls, and exhibitions showcasing traditions from around the world.\n\nOrganizers reported over 50,000 attendees throughout the festival, marking a 30% increase from last year. The event featured more than 100 cultural groups representing various communities, each presenting their unique traditions through music, dance, and cuisine.\n\n"This festival embodies the spirit of our community," said Mayor Jennifer Roberts. "Its a beautiful reminder of how our diversity makes us stronger and more vibrant."\n\nHighlights included traditional dance performances, cooking demonstrations, and a craft marketplace featuring artisans from local communities. The festivals success has prompted organizers to announce plans for an expanded event next year.',
+      content_ta:
+        'வருடாந்த கலாச்சார பாரம்பரிய விழா இந்த வார இறுதியில் சாதனை கூட்டத்தை ஈர்த்தது. மூன்று நாள் நிகழ்வில் உலகம் முழுவதும் இருந்து பாரம்பரியங்களை காட்சிப்படுத்தும் 100க்கும் மேற்பட்ட கலாச்சார குழுக்கள் இடம்பெற்றன.\n\nஏற்பாடாளர்கள் விழா முழுவதும் 50,000க்கும் மேற்பட்ட பங்கேற்பாளர்களை அறிவித்தனர், இது கடந்த ஆண்டை விட 30% அதிகரிப்பாகும். மேயர் ஜெனிஃபர் ராபர்ட்ஸ் கூறியதாவது, "இந்த விழா நமது சமூகத்தின் ஆவியை பிரதிபலிக்கிறது".\n\nவிழாவின் வெற்றி அடுத்த ஆண்டு விரிவாக்கப்பட்ட நிகழ்வுக்கான திட்டங்களை அறிவிக்க ஏற்பாடாளர்களைத் தூண்டியுள்ளது.',
       status: 'published',
       is_breaking: false,
       is_featured: true,
-      categories: categoryOptions.value.length > 1 ? [categoryOptions.value[1].id] : [],
+      category_ids: categoryOptions.value.length > 1 ? [categoryOptions.value[4].id] : [],
     },
     {
-      title: 'New Environmental Initiative Aims to Restore Local Wetlands',
-      excerpt:
-        'Conservation group launches ambitious project to restore 500 acres of wetland habitat.',
-      content:
-        'The Regional Conservation Alliance has launched a comprehensive initiative to restore and protect the areas vital wetland ecosystems. The five-year project aims to rehabilitate over 500 acres of degraded wetlands, which serve as crucial habitats for numerous species of birds, fish, and other wildlife.\n\nThe initiative, funded through a combination of government grants and private donations, will focus on removing invasive species, reintroducing native plants, and improving water quality. Scientists estimate that the restored wetlands will support populations of over 150 different species.\n\n"Wetlands are among our most valuable natural resources," explained project director Michael Torres. "They filter water, prevent flooding, and provide essential habitat for wildlife. This restoration project is an investment in our environmental future."\n\nThe project has already begun with community volunteer days, where residents can participate in planting native vegetation and monitoring wildlife. Response from the community has been overwhelmingly positive, with volunteer slots filling up weeks in advance.',
-      status: 'published',
-      is_breaking: false,
-      is_featured: true,
-      categories: categoryOptions.value.length > 1 ? [categoryOptions.value[1].id] : [],
-    },
-    {
-      title: 'Education Department Announces New STEM Program for Schools',
-      excerpt:
+      title_si: 'අධ්‍යාපන දෙපාර්තමේන්තුව නව STEM වැඩසටහන ප්‍රකාශයට',
+      title_en: 'Education Department Announces New STEM Program for Schools',
+      title_ta: 'கல்வித் துறை புதிய STEM திட்டத்தை அறிவிக்கிறது',
+      excerpt_si:
+        'නව විෂයමාලාව විද්‍යාව හා තාක්ෂණය කෙරෙහි සිසුන්ගේ උනන්දුව වැඩි කිරීම අරමුණු කරයි.',
+      excerpt_en:
         'Innovative curriculum aims to increase student engagement in science and technology.',
-      content:
+      excerpt_ta:
+        'புதுமையான பாடத்திட்டம் அறிவியல் மற்றும் தொழில்நுட்பத்தில் மாணவர் ஈடுபாட்டை அதிகரிக்க நோக்கமாக உள்ளது.',
+      content_si:
+        'අධ්‍යාපන දෙපාර්තමේන්තුව දිසා පුරා පාසල්වල විද්‍යාව, තාක්ෂණය, ඉංජිනේරු විද්‍යාව සහ ගණිතය ඉගෙනීම වැඩි දියුණු කිරීම සඳහා නව STEM අධ්‍යාපන වැඩසටහනක් එළිදැක්වීය.\n\nවැඩසටහන තාක්ෂණ අංශවල නිපුණ සේවකයින් සඳහා වැඩෙන ඉල්ලුමට ප්‍රතිචාර දක්වයි. අධ්‍යාපන අධ්‍යක්ෂ ලීසා මාර්ටිනෙස් පැවසුවේ "අපට ඊළඟ පරම්පරාවේ නවෝත්පාදකයින් දිරිමත් කිරීමට අවශ්‍යයි" යනුවෙනි.\n\nප්‍රාථමික පරීක්ෂණ වැඩසටහන් සිසුන්ගේ සහභාගීත්වය සහ විභාග ලකුණු සැලකිය යුතු ලෙස වැඩි වීමක් පෙන්නුම් කර ඇත.',
+      content_en:
         'The Department of Education has unveiled a new comprehensive STEM education program designed to enhance science, technology, engineering, and mathematics learning in schools across the district. The program, which will launch in the upcoming academic year, includes updated curricula, teacher training, and partnerships with local technology companies.\n\nThe initiative responds to growing demand for skilled workers in technology sectors while addressing concerns about declining student interest in STEM fields. The program features hands-on learning experiences, including robotics clubs, coding workshops, and science competitions.\n\n"We want to inspire the next generation of innovators," said Education Director Lisa Martinez. "This program provides students with real-world skills and experiences that will prepare them for the careers of tomorrow."\n\nLocal tech companies have pledged support through mentorship programs and equipment donations. Early pilot programs in select schools have shown promising results, with significant increases in student engagement and test scores.',
+      content_ta:
+        'கல்வித் துறை மாவட்டம் முழுவதும் உள்ள பள்ளிகளில் அறிவியல், தொழில்நுட்பம், பொறியியல் மற்றும் கணிதக் கற்றலை மேம்படுத்த வடிவமைக்கப்பட்ட ஒரு புதிய விரிவான STEM கல்வித் திட்டத்தை வெளியிட்டுள்ளது.\n\nஇத்திட்டம் தொழில்நுட்பத் துறைகளில் திறமையான தொழிலாளர்களுக்கான வளர்ந்து வரும் தேவைக்கு பதிலளிக்கிறது. கல்வி இயக்குனர் லிசா மார்டினெஸ் கூறியதாவது, "நாம் அடுத்த தலைமுறை புதுமையாளர்களை ஊக்குவிக்க விரும்புகிறோம்".\n\nதேர்ந்தெடுக்கப்பட்ட பள்ளிகளில் ஆரம்ப பைலட் திட்டங்கள் மாணவர் ஈடுபாடு மற்றும் தேர்வு மதிப்பெண்களில் குறிப்பிடத்தக்க அதிகரிப்பைக் காட்டியுள்ளன.',
       status: 'published',
       is_breaking: false,
       is_featured: false,
-      categories: categoryOptions.value.length > 1 ? [categoryOptions.value[1].id] : [],
-    },
-    {
-      title: 'Sports: Local Team Advances to Championship Finals',
-      excerpt: 'Hometown heroes secure decisive victory in semi-final match.',
-      content:
-        'The City Eagles delivered a stunning performance last night, defeating their rivals 3-1 to secure a spot in the championship finals. The victory marks the teams first finals appearance in over a decade and has energized fans across the city.\n\nCaptain James Rodriguez led the team with two goals, while goalkeeper Maria Santos made several crucial saves to maintain the lead. The sold-out crowd of 40,000 fans created an electric atmosphere that players credited as a key factor in their success.\n\n"The support from our fans was incredible," Rodriguez said after the match. "We felt their energy throughout the game, and it pushed us to give everything we had."\n\nThe championship final is scheduled for next month at the National Stadium. Tickets went on sale this morning and are expected to sell out quickly. Team management has announced plans for public viewing events for fans unable to secure stadium tickets.',
-      status: 'draft',
-      is_breaking: false,
-      is_featured: false,
-      categories: categoryOptions.value.length > 1 ? [categoryOptions.value[1].id] : [],
+      category_ids: categoryOptions.value.length > 1 ? [categoryOptions.value[1].id] : [],
     },
   ];
 

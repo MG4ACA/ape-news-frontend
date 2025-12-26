@@ -22,16 +22,19 @@
                 :to="`/category/${cat.id}`"
                 class="text-color-secondary"
               >
-                {{ cat.name }}
+                {{ getLocalizedField(cat, 'name', locale) }}
               </router-link>
-              <span v-else>{{ cat.name }}</span>
+              <span v-else>{{ getLocalizedField(cat, 'name', locale) }}</span>
               <span v-if="index < categoryPath.length - 1" class="mx-2">/</span>
             </span>
           </nav>
 
-          <h1 class="text-4xl font-bold mb-2">{{ category.name }}</h1>
-          <p v-if="category.description" class="text-xl text-color-secondary">
-            {{ category.description }}
+          <h1 class="text-4xl font-bold mb-2">{{ getLocalizedField(category, 'name', locale) }}</h1>
+          <p
+            v-if="getLocalizedField(category, 'description', locale)"
+            class="text-xl text-color-secondary"
+          >
+            {{ getLocalizedField(category, 'description', locale) }}
           </p>
         </div>
 
@@ -42,7 +45,7 @@
             <Button
               v-for="subcat in subcategories"
               :key="subcat.id"
-              :label="subcat.name"
+              :label="getLocalizedField(subcat, 'name', locale)"
               @click="$router.push(`/category/${subcat.id}`)"
               outlined
               size="small"
@@ -88,6 +91,7 @@ import Pagination from '@/components/common/Pagination.vue';
 import NewsCard from '@/components/news/NewsCard.vue';
 import { useCategoryStore } from '@/stores/categories';
 import { useNewsStore } from '@/stores/news';
+import { getLocalizedField } from '@/utils/i18nHelpers';
 import { computed, onMounted, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRoute } from 'vue-router';
