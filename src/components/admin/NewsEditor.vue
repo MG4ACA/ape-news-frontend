@@ -414,7 +414,7 @@ watch(
         content: data.content || data.content_si || '',
         // Metadata
         featured_image: data.featured_image || null,
-        categories: data.categories || [],
+        categories: data.categories ? data.categories.map((cat) => cat.id) : [],
         youtube_url: data.youtube_url || '',
         status: data.status || 'draft',
         is_featured: data.is_featured || false,
@@ -565,6 +565,15 @@ const submitForm = async () => {
   submitData.title = submitData.title_si;
   submitData.excerpt = submitData.excerpt_si;
   submitData.content = submitData.content_si;
+
+  // Convert categories array to category_ids array for backend
+  // categories should already be an array of IDs from MultiSelect
+  submitData.category_ids = (submitData.categories || []).filter(
+    (id) => id != null && id !== '' && !isNaN(id) && id > 0
+  );
+
+  // Remove categories field since we're sending category_ids
+  delete submitData.categories;
 
   // Only remove optional language fields if checkbox is unchecked AND fields are empty
   if (
