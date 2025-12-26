@@ -388,16 +388,18 @@ Full-stack news website with user area and admin panel.
 - [x] Display comment statistics
 - [x] View comment details in modal
 
-### 4.8 User & Role Management
+### 4.8 User & Role Management ✅
 
-- [ ] Create AdminUsers.vue
-- [ ] Display all admin users in data table
-- [ ] Create/Edit admin user form
-  - [ ] Name, email, password
-  - [ ] Role selection (Super Admin, Editor, Moderator)
-- [ ] Delete user with confirmation
-- [ ] Implement role-based UI (only super admin sees this)
-- [ ] Integrate admin user API
+- [x] Create UserManager.vue component
+- [x] Display all admin users in data table
+- [x] Create/Edit admin user form
+  - [x] Name, email, password
+  - [x] Role selection (Super Admin, Editor, Moderator)
+  - [x] Active/Inactive status toggle
+- [x] Delete user with confirmation
+- [x] Role-based statistics (Super Admin, Editor, Moderator counts)
+- [x] Integrate admin user API
+- [x] Pagination and filtering support
 
 ### 4.9 Analytics Page
 
