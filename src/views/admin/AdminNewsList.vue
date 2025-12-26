@@ -29,20 +29,20 @@
             class="flex-1"
             @input="applyFilters"
           />
-          <Dropdown
+          <Select
             v-model="filters.status"
             :options="statusOptions"
-            optionLabel="label"
-            optionValue="value"
+            option-label="label"
+            option-value="value"
             placeholder="All Status"
             class="w-12rem"
             @change="applyFilters"
           />
-          <Dropdown
+          <Select
             v-model="filters.category"
             :options="categoryOptions"
-            optionLabel="name"
-            optionValue="id"
+            option-label="name"
+            option-value="id"
             placeholder="All Categories"
             class="w-12rem"
             @change="applyFilters"

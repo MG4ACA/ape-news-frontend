@@ -205,15 +205,15 @@
         <!-- Parent Category -->
         <div class="field">
           <label for="parent_id" class="font-semibold">Parent Category</label>
-          <Dropdown
+          <Select
             id="parent_id"
             v-model="formData.parent_id"
             :options="parentCategoryOptions"
-            optionLabel="label"
-            optionValue="value"
+            option-label="label"
+            option-value="value"
             placeholder="Select parent category (optional)"
             class="w-full"
-            showClear
+            show-clear
           />
           <small class="text-color-secondary">Leave empty for root category</small>
         </div>

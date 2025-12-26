@@ -52,22 +52,22 @@
         <div class="grid">
           <div class="col-12 md:col-6">
             <label class="block mb-2 font-semibold">Filter by Role</label>
-            <Dropdown
+            <Select
               v-model="localFilters.role"
               :options="roleOptions"
-              optionLabel="label"
-              optionValue="value"
+              option-label="label"
+              option-value="value"
               placeholder="All Roles"
               @change="applyFilters"
             />
           </div>
           <div class="col-12 md:col-6">
             <label class="block mb-2 font-semibold">Sort Order</label>
-            <Dropdown
+            <Select
               v-model="localFilters.sort_order"
               :options="orderOptions"
-              optionLabel="label"
-              optionValue="value"
+              option-label="label"
+              option-value="value"
               @change="applyFilters"
             />
           </div>
@@ -249,11 +249,11 @@
         <!-- Role -->
         <div class="col-12">
           <label class="block mb-2 font-semibold">Role *</label>
-          <Dropdown
+          <Select
             v-model="formData.role"
             :options="roleOptions"
-            optionLabel="label"
-            optionValue="value"
+            option-label="label"
+            option-value="value"
             placeholder="Select role"
             :disabled="submitting"
           />
@@ -302,9 +302,9 @@ import Column from 'primevue/column';
 import ConfirmDialog from 'primevue/confirmdialog';
 import DataTable from 'primevue/datatable';
 import Dialog from 'primevue/dialog';
-import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
+import Select from 'primevue/select';
 import Tag from 'primevue/tag';
 import Toast from 'primevue/toast';
 import { useConfirm } from 'primevue/useconfirm';

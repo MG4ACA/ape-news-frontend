@@ -18,7 +18,7 @@
         text
         rounded
         severity="secondary"
-        v-badge="3"
+        v-overlaybadge="3"
         @click="toggleNotifications"
       />
 

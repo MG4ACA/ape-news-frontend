@@ -29,32 +29,32 @@
         <div class="grid">
           <div class="col-12 md:col-4">
             <label class="block mb-2 font-semibold">Filter by Status</label>
-            <Dropdown
+            <Select
               v-model="localFilters.status"
               :options="statusOptions"
-              optionLabel="label"
-              optionValue="value"
+              option-label="label"
+              option-value="value"
               placeholder="All Statuses"
               @change="applyFilters"
             />
           </div>
           <div class="col-12 md:col-4">
             <label class="block mb-2 font-semibold">Sort By</label>
-            <Dropdown
+            <Select
               v-model="localFilters.sort_by"
               :options="sortOptions"
-              optionLabel="label"
-              optionValue="value"
+              option-label="label"
+              option-value="value"
               @change="applyFilters"
             />
           </div>
           <div class="col-12 md:col-4">
             <label class="block mb-2 font-semibold">Sort Order</label>
-            <Dropdown
+            <Select
               v-model="localFilters.sort_order"
               :options="orderOptions"
-              optionLabel="label"
-              optionValue="value"
+              option-label="label"
+              option-value="value"
               @change="applyFilters"
             />
           </div>
@@ -291,7 +291,7 @@ import Column from 'primevue/column';
 import ConfirmDialog from 'primevue/confirmdialog';
 import DataTable from 'primevue/datatable';
 import Dialog from 'primevue/dialog';
-import Dropdown from 'primevue/dropdown';
+import Select from 'primevue/select';
 import Tag from 'primevue/tag';
 import Toast from 'primevue/toast';
 import { useConfirm } from 'primevue/useconfirm';

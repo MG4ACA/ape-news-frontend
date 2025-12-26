@@ -263,12 +263,12 @@
                 <div class="col-12 md:col-6">
                   <div class="field">
                     <label for="status" class="font-semibold">Status *</label>
-                    <Dropdown
+                    <Select
                       id="status"
                       v-model="formData.status"
                       :options="statusOptions"
-                      optionLabel="label"
-                      optionValue="value"
+                      option-label="label"
+                      option-value="value"
                       placeholder="Select status"
                       class="w-full"
                     />

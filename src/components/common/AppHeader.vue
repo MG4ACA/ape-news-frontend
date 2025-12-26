@@ -32,7 +32,7 @@
           <!-- Theme Toggle -->
           <div class="flex align-items-center gap-2">
             <i :class="['pi', theme === 'dark' ? 'pi-moon' : 'pi-sun', 'text-secondary']"></i>
-            <InputSwitch v-model="theme" true-value="dark" false-value="light" />
+            <ToggleSwitch v-model="theme" true-value="dark" false-value="light" />
           </div>
 
           <!-- User Menu -->
@@ -153,7 +153,7 @@ const userMenuItems = computed(() => [
     command: () => router.push('/profile'),
   },
   {
-    label: t('news.bookmarks'),
+    label: t('nav.bookmarks'),
     icon: 'pi pi-bookmark',
     command: () => router.push('/bookmarks'),
   },

@@ -5,11 +5,11 @@
       <h1 class="text-3xl font-bold m-0">Analytics Dashboard</h1>
       <div class="flex gap-2 align-items-center">
         <label class="font-semibold">Time Period:</label>
-        <Dropdown
+        <Select
           v-model="selectedDays"
           :options="dayOptions"
-          optionLabel="label"
-          optionValue="value"
+          option-label="label"
+          option-value="value"
           @change="handleDateChange"
         />
         <Button
@@ -217,7 +217,7 @@ import Card from 'primevue/card';
 import Chart from 'primevue/chart';
 import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
-import Dropdown from 'primevue/dropdown';
+import Select from 'primevue/select';
 import { computed, onMounted, ref } from 'vue';
 
 const analyticsStore = useAnalyticsStore();

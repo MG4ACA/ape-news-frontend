@@ -17,7 +17,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label class="block text-sm font-medium mb-2">Position</label>
-            <Dropdown
+            <Select
               v-model="filters.position"
               :options="positionOptions"
               option-label="label"
@@ -29,7 +29,7 @@
           </div>
           <div>
             <label class="block text-sm font-medium mb-2">Status</label>
-            <Dropdown
+            <Select
               v-model="filters.is_active"
               :options="statusOptions"
               option-label="label"
@@ -166,7 +166,7 @@
           <!-- Position -->
           <div>
             <label class="block text-sm font-medium mb-2">Position *</label>
-            <Dropdown
+            <Select
               v-model="form.position"
               :options="positionOptions"
               option-label="label"
