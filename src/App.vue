@@ -38,7 +38,7 @@ const isAdminRoute = computed(() => route.path.startsWith('/admin'));
   </div>
 </template>
 
-<style>
+<style lang="scss">
 :root {
   --nav-height: 70px;
 }
@@ -47,6 +47,11 @@ const isAdminRoute = computed(() => route.path.startsWith('/admin'));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  .p-card-body {
+    backdrop-filter: blur(3px);
+    background: #0f172a85;
+  }
 }
 
 .main-content {

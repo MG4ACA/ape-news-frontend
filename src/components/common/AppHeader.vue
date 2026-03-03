@@ -185,6 +185,7 @@ const toggleUserMenu = (event) => {
   .p-menuitem-text {
     font-size: 0.875rem;
     cursor: pointer;
+    color: var(--text-color);
   }
 }
 .logo-container {

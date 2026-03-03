@@ -134,19 +134,20 @@ section {
 
 .app-header {
   /* background: linear-gradient(135deg, #0a2a66, #0a2a66); */
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--surface-border);
+  backdrop-filter: blur(3px);
+  /* border-bottom: 1px solid var(--surface-border); */
 }
 
 .p-menubar,
 .p-megamenu {
   background: rgba(255, 255, 255, 0.85) !important;
   backdrop-filter: blur(12px);
-  border: 1px solid var(--surface-border) !important;
+  /* border: 1px solid var(--surface-border) !important; */
+  border: none;
 }
 
 .menubar-custom.p-menubar {
-  box-shadow: var(--glow);
+  /* box-shadow: var(--glow); */
 }
 
 [data-theme='dark'] .p-menubar,
